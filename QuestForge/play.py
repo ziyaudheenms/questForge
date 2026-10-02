@@ -1,5 +1,5 @@
-from domain.character import Warrior,Mage, Cleric
-
+from domain.character import Rogue, Warrior,Mage, Cleric
+from domain.battle import run_special_round, total_party_damage
 if __name__ == "__main__":
     print("QuestForge booting (level 0 skelton)")
     # hero = Character("Aria", 100, 15)
@@ -9,12 +9,20 @@ if __name__ == "__main__":
 
 
 
-    warrior = Warrior("Bram")
-    mage = Mage("Sylla")
-    cleric = Cleric('clera')
+    # warrior = Warrior("Bram")
+    # mage = Mage("Sylla")
+    # cleric = Cleric('clera')
 
 
-    warrior.attack(mage)            # Reusing parent Character method
-    mage.special_ability(warrior)   # Using specialized Mage method
-    print(f"Bram HP: {warrior.health}, Sylla HP: {mage.health}")
-    cleric.special_ability(warrior)
+    # warrior.attack(mage)            # Reusing parent Character method
+    # mage.special_ability(warrior)   # Using specialized Mage method
+    # print(f"Bram HP: {warrior.health}, Sylla HP: {mage.health}")
+    # cleric.special_ability(warrior)
+
+    party = [Warrior("Bram"), Mage("Sylla"), Rogue("Kade"), Cleric('Clara')]   #creating a list of character instances ----> where with just a same function call we trigger different actions
+    dummy = Warrior("Training Dummy")
+
+    for member in party:
+        run_special_round(member, dummy)
+
+    print(f"Dummy HP: {dummy.health}\n")
