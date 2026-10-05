@@ -1,4 +1,4 @@
-from domain.character import Rogue, Warrior,Mage, Cleric
+from domain.character import Character, Rogue, Warrior,Mage, Cleric
 from domain.battle import run_special_round, total_party_damage
 if __name__ == "__main__":
     print("QuestForge booting (level 0 skelton)")
@@ -19,10 +19,12 @@ if __name__ == "__main__":
     # print(f"Bram HP: {warrior.health}, Sylla HP: {mage.health}")
     # cleric.special_ability(warrior)
 
-    party = [Warrior("Bram"), Mage("Sylla"), Rogue("Kade"), Cleric('Clara')]   #creating a list of character instances ----> where with just a same function call we trigger different actions
-    dummy = Warrior("Training Dummy")
+    # party = [Warrior("Bram"), Mage("Sylla"), Rogue("Kade"), Cleric('Clara')]   #creating a list of character instances ----> where with just a same function call we trigger different actions
+    # dummy = Warrior("Training Dummy")
 
-    for member in party:
-        run_special_round(member, dummy)
+    # for member in party:
+    #     run_special_round(member, dummy)
 
-    print(f"Dummy HP: {dummy.health}\n")
+    # print(f"Dummy HP: {dummy.health}\n")
+
+    person = Character("Test" , 10 , 1)  #this will give as error since we have a abstactmethod in this core class anf we havent implemented it ---> which means we cant direclty build object with classes that have abstractmethod , in replace we have to create a subclass of it....

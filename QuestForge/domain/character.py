@@ -1,4 +1,7 @@
-class Character:
+from abc import ABC, abstractmethod
+
+class Character(ABC):
+
     """fleshed out level 1"""
     def __init__(self, name, health, attack_power):
         self.name = name
@@ -36,6 +39,9 @@ class Character:
         self._health = min(self.__max_health, self._health + hp)  # Ensures health doesn't exceed max health, if our health is 90 and max health is 100, if we heal for 20, we should only go to 100, not 110. So we take the minimum of max health and current health + healing amount.
        
 
+    @abstractmethod
+    def special_ability(self, target: 'Character'):
+        raise NotImplementedError     # The special Ability is a abstract method which that is used to tell the subclasses such that this method should be reused and implemented accordingly in the subclasses.
 
 
 # We are going to generate the inherited Characters from the base Character class. We will create a Warrior and a Mage class that inherit from Character and have their own unique attributes and methods.
