@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-
+from domain.inventory import Inventory
 class Character(ABC):
 
     """fleshed out level 1"""
@@ -8,6 +8,8 @@ class Character(ABC):
         self._health = health  # _ is used in order to say thhat its a protected variable but python doesnt stops accessing it 
         self.__max_health = health #__max_health uses two __ which is a stronger way to tell everyone that this variable is private and should not be accessed or modified directly. It is a convention in Python to use a single underscore for "protected" variables and double underscores for "private" variables.
         self.attack_power = attack_power
+        self._defence = 0
+        self.inventory = Inventory()  #using the property of composintion we are binding the another class as a method or reference for accessing the methods within that classssss.
 
     # @property    -> used to access the private , protected variabes in a way like h1.health instead of h1.health() which is more like a function call.
     @property
@@ -17,6 +19,16 @@ class Character(ABC):
     @property
     def is_alive(self) -> bool:
         return self._health > 0
+
+    @property
+    def defence(self) -> int:
+        return self._defence
+
+    @defence.setter     #used to access the defence which is a property bu the internals for adding hr defence
+    def defence(self, value):
+        if value < 0:
+            raise ValueError("Defense cannot be negative!")
+        self._defence = value
 
     def describe(self) -> str:
         return f"{self.name} has {self._health} HP and {self.attack_power} ATK with max health of {self.__max_health} HP."
